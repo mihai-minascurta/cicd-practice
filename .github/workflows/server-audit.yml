@@ -13,4 +13,4 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Execute the bash script
-        uses: ./audit.sh
+        run: ./audit.sh
