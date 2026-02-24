@@ -1,0 +1,16 @@
+name: Nightly Server Audit
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-my-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download the code
+        uses: actions/checkout@v4
+
+      - name: Execute the bash script
+        uses: ./audit.sh
