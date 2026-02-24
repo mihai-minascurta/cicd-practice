@@ -1,0 +1,16 @@
+name: Manual Code Backup
+on:
+   workflow_dispatch:
+
+jobs:
+  create-zip-backup:
+    runs-on: ubuntu:latest
+    steps:
+      - name: Download the code
+        uses: actions/checkout@v4
+
+      - name: Zip the repository
+        run: zip -r backup.zip .
+
+      - name: Verify the backup
+        run: ls -lh
