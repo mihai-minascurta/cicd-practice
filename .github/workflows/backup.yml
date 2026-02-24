@@ -4,7 +4,7 @@ on:
 
 jobs:
   create-zip-backup:
-    runs-on: ubuntu:latest
+    runs-on: ubuntu-latest
     steps:
       - name: Download the code
         uses: actions/checkout@v4
