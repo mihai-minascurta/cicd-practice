@@ -1,0 +1,19 @@
+name: Quality Gate
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint-bash-code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download the code
+        uses: actions/checkout@v4
+
+      - name: Install ShellCheck
+        run: sudo apt-get install -y shellcheck
+
+      - name: Check the code for bugs
+        run: shellcheck script.sh
