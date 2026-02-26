@@ -11,10 +11,10 @@ on:
 
 jobs:
   aws-gate:
-    run-on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Download the code
-        uses: actions/checkup@v4
+        uses: actions/checkout@v4
 
       - name: Install shellcheck
         run: sudo apt-get install -y shellcheck
@@ -24,5 +24,5 @@ jobs:
 
       - name: Run the sh file
         env:
-          AWS_ACCES_KEY: ${{ secrets.AWS_ACCES_KEY }}
+          AWS_ACCESS_KEY: ${{ secrets.AWS_ACCES_KEY }}
         run: ./cloud-backup.sh
