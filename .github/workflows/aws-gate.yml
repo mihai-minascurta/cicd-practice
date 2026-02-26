@@ -1,0 +1,28 @@
+name: AWS Gate
+
+on:
+  pull_request:
+    branches:
+      - main
+
+  push:
+    paths:
+      - 'cloud-backup.sh'
+
+jobs:
+  aws-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download the code
+        uses: actions/checkout@v4
+
+      - name: Install shellcheck
+        run: sudo apt-get install -y shellcheck
+
+      - name: Check the sh file
+        run: shellcheck ./cloud-backup.sh
+
+      - name: Run the sh file
+        env:
+          AWS_ACCESS_KEY: ${{ secrets.AWS_ACCES_KEY }}
+        run: ./cloud-backup.sh
