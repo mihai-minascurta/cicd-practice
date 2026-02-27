@@ -1,0 +1,27 @@
+name: API Gate
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'api-health.sh'
+
+
+jobs:
+  api_gate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download the code
+        uses: actions/checkout@v4
+
+      - name: Download the shellcheck
+        run: sudo apt-get install -y shellcheck
+
+      - name: Verify the sh file
+        run: shellcheck api-health.sh
+
+      - name: Run the script,with a secret password
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+        run: ./api-health.sh
