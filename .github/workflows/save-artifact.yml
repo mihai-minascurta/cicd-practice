@@ -1,0 +1,21 @@
+name: Generate and Save Report
+
+on:
+  workflow_dispatch:  # Manual trigger!
+
+jobs:
+  create-artifact:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create a valuable file
+        run: |
+          echo "CONFIDENTIAL SERVER REPORT" > report.txt
+          echo "Generated on: $(date)" >> report.txt
+          echo "Status: ALL SYSTEMS GREEN" >> report.txt
+
+      - name: Save the file as an Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-daily-report      # The name of the zip file it will create
+          path: report.txt           # The exact file you want to save
+
