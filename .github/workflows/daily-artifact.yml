@@ -1,15 +1,23 @@
-name: Daily artifact
+name: Daily Artifact
 
 on:
   workflow_dispatch:
-
 
 jobs:
   daily-artifact:
     runs-on: ubuntu-latest
     steps:
+      # Step 1: Download the code
       - name: Download the code
         uses: actions/checkout@v4
+
+      # Step 2: Run your bash script to generate the text file
+      - name: Run diagnostic script
+        run: ./diagnostic.sh
+
+      # Step 3: Save the generated file to GitHub
+      - name: Save the artifact
+        uses: actions/upload-artifact@v4
         with:
-          - name: server-health-data
-            path: cpu-report.txt
+          name: server-health-data
+          path: cpu-report.txt
