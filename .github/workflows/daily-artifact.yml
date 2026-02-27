@@ -1,0 +1,15 @@
+name: Daily artifact
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  daily-artifact:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download the code
+        uses: actions/checkout@v4
+        with:
+          - name: server-health-data
+            path: cpu-report.txt
