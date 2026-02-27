@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "Pinging production API..."
 
-if [" $API_KEY" == "SuperSecret123" ]
+if [ "$API_KEY" == "SuperSecret123" ]
 then
   echo "200 OK: API is healthy!"
   echo "Key used: $API_KEY"
