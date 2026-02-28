@@ -1,0 +1,32 @@
+name: Multi server System
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+
+  the_builder:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate the secret payload
+        run: |
+          echo '{"status": "ready for production"}' > payload.json
+
+      - name: Upload the file to GitHub Cloud
+        uses: actions/upload-artifact@v4
+        with:
+          name: cloud-playload
+          path: payload.json
+
+  the_deployer:
+    needs: the_builder
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download payload from GitHUb
+        uses: actions/download-artifact@v4
+        with:
+          name: cloud-payload
+
+      - name: Verify file contest
+        run: cat payload.json
