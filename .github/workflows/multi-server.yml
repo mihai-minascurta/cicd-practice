@@ -16,7 +16,7 @@ jobs:
       - name: Upload the file to GitHub Cloud
         uses: actions/upload-artifact@v4
         with:
-          name: cloud-playload
+          name: cloud-payload
           path: payload.json
 
   the_deployer:
