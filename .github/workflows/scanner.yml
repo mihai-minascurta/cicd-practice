@@ -1,0 +1,30 @@
+name: Security Scanner
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  the_compiler:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create the compile file
+        run: echo "[1010101] SECURE_CORE_ACTIVE" > app-binary.txt
+
+      - name: Upload the file to the GitHub Cloud
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-build
+          path: app-binary.txt
+
+  the_scanner:
+    needs: the_compiler
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download the file from GitHub Cloud
+        uses: actions/download-artifact@v4
+        with:
+          name: production-build
+
+      - name: Verify the file
+        run: cat app-binary.txt 
