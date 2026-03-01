@@ -1,0 +1,17 @@
+name: Matrix Test
+
+on:
+  workflow_dispatch:
+
+
+jobs:
+  test-the-code:
+    strategy:
+      matrix:
+        my-os: [ubuntu-latest, windows-latest, macos-latest]
+
+    runs-on: ${{ matrix.my-os }}
+
+    steps:
+      - name: Print the OS
+        run: echo "Hello , i'm runnin on ${{ matrix.my-os }}"
