@@ -8,10 +8,12 @@ jobs:
   test-the-code:
     strategy:
       matrix:
-        my-os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-latest, windows-latest]
+        node-version: [18, 20, 22]
 
-    runs-on: ${{ matrix.my-os }}
+    runs-on: ${{ matrix.os }}
 
     steps:
       - name: Print the OS
-        run: echo "Hello , i'm runnin on ${{ matrix.my-os }}"
+        run: |
+           echo "Hello , i'm runnin on ${{ matrix.os }} with Node version : ${{ matrix.node-version }}"
