@@ -1,0 +1,21 @@
+name: Cache test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  speed-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download the code
+        uses: actions/checkout@v4
+
+      - name: Cache Node Modules
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: my-node-cache
+          restore-keys: my-node-
+
+      - name: Install command
+        run: npm install react
